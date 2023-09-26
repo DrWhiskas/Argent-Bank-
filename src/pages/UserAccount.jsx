@@ -4,11 +4,21 @@ import Footer from "../components/Footer";
 import BankCard from "../components/BankCard";
 
 export default function UserAccount(){
-    return(
-        <>
-            <Header />
-            <BankCard />
-            <Footer />
-        </>
-    )
+    return (
+			<>
+				<Header />
+				<div className="main bg-dark">
+					<BankCard />
+					<BankCard />
+					<BankCard />
+					<BankCard />
+					<BankCard />
+					<BankCard />
+					<BankCard />
+					<BankCard />
+					<BankCard />
+				</div>
+				<Footer />
+			</>
+		);
 }
