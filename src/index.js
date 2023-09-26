@@ -7,16 +7,28 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import UserAccount from './pages/UserAccount';
 
+// REDUX
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers'
+
+const store = configureStore({
+	reducer: rootReducer, 
+	devTools: true,
+})
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Home />} />
-        		<Route path='/login' element={<Login />} />
-				<Route path='/user' element={<UserAccount />} />
-			</Routes>
-		</BrowserRouter>
+		<Provider store={store}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/user" element={<UserAccount />} />
+				</Routes>
+			</BrowserRouter>
+		</Provider>
 	</React.StrictMode>
 );
 
