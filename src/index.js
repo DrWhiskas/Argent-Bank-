@@ -7,15 +7,16 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import UserAccount from './pages/UserAccount';
 
+import './css/base.css'
 // REDUX
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers'
+import rootReducer from './reducers';
 
 const store = configureStore({
-	reducer: rootReducer, 
+	reducer: rootReducer,
 	devTools: true,
-})
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -36,10 +37,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-/*
-<Route path="/" element={<Home />} />
-				<Route path="/About" element={<About />} />
-				<Route path="/localisation/:id" element={<Logements />} />
-				<Route path="*" element={<Error />} />
-*/
