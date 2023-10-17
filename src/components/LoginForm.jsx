@@ -1,8 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import '../css/signin.css';
 
+import { useDispatch } from 'react-redux';
+import login from '../reducers/login.reducer';
+
 export default function LonginForm() {
+
+	const dispatch = useDispatch()
+
+	// useState : 
+	const [username, setUsename] = useState('')
+	const [password, setPassword] = useState('')
+
+	function handleLogin(){
+		if(!username || !password){
+			return 0 // faire un message d'erreur ou changer la couleur de la case pour plutard
+		}
+	}
+	
+
+
 	return (
 		<section className="sign-in-content">
 			<h1>Sign In</h1>
