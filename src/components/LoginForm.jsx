@@ -2,13 +2,15 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import '../css/signin.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from '../features/store';
 import login from '../reducers/login.reducer';
-
+import { useNavigate } from 'react-router-dom';
 export default function LonginForm() {
-
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
+	
 	// useState : 
 	const [username, setUsename] = useState('')
 	const [password, setPassword] = useState('')
@@ -18,8 +20,11 @@ export default function LonginForm() {
 			return 0 // faire un message d'erreur ou changer la couleur de la case pour plutard
 		}
 	}
-	
-
+	function toto(){
+		//dispatch(setToken('test'));
+		console.log('toto');
+		navigate('/user');
+	}
 
 	return (
 		<section className="sign-in-content">
@@ -37,9 +42,9 @@ export default function LonginForm() {
 					<input type="checkbox" id="remember-me" />
 					<label htmlFor="remember-me">Remember me</label>
 				</div>
-				<Link className="sign-in-button" to="/user">
+				<div className="sign-in-button"  onClick={toto}>
 					Sign In
-				</Link>
+				</div>
 			</form>
 		</section>
 	);
