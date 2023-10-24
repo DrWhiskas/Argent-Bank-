@@ -5,7 +5,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
 	user: null,
-	token: 'truc',
+	token: '',
 };
 
 const loginSlice = createSlice({
@@ -14,8 +14,11 @@ const loginSlice = createSlice({
     reducers: {
         setToken:(state, action) =>{
             state.token = action.payload;
-            
-        }
+        },
+        logout: (state) =>{
+            state.token = ''
+        },
+
     }
 })
 export const { setToken } =  loginSlice.actions
