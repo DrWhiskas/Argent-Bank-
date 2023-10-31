@@ -17,7 +17,7 @@ export default function LonginForm() {
 
 	async function test(){
 		try {
-        const response = await fetch('http://localhost:3001');
+        const response = await fetch('http://localhost:3001/api/v1/user/login');
         if (response.ok) {
             console.log('Connexion à l\'API réussie');
         } else {
@@ -28,7 +28,7 @@ export default function LonginForm() {
         console.error('Erreur lors de la connexion à l\'API :', error);
     }
 	}
-	test()
+	//test()
 
 	async function handleLogin() {
 		if (!username || !password) {
@@ -37,39 +37,33 @@ export default function LonginForm() {
 		} else {
 			// creation de l'objet userData
 			const userData = {
-				email: username,
-				password: password,
+				'email': username,
+				'password': password,
 			}
+			console.log(typeof userData);
+			let response; 
 			try{
 				// post api 
-				const response = await fetch('http://localhost:3001/api/v1/user/login', {
-					method: 'POST',
-					body: JSON.stringify({
-						userData,
-					}),
-					headers: {
-						'Content-type': 'application/json',
-					},
-				})
+				 response = await fetch(
+					'http://localhost:3001/api/v1/user/login',
+					{
+						method: 'POST',
+						body: JSON.stringify(
+							userData
+						),
+						headers: {
+							'Content-type': 'application/json',
+						},
+					}
+				).then((data) => data.json())
 				// check si la reponse est bonne
-				if(response.ok){
-					const data = await response.json();
-					dispatch(setToken(data.token))
-					navigate('/user');
-				}else{
-					if(response.status == 400){
-						console.log('Error 400: Ivalid Fields');
-					}
-					else if(response.status == 500){
-						console.log('Error 500: Internal Server Error');
-					}else{
-						console.log('Error ', response.status);
-					}
-				}
+					
 			} catch(error){
 				console.error(error);
 				return
 			}
+			dispatch(setToken(response.body.token))
+			navigate('/user')
 		}
 	}
 	return (
