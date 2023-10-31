@@ -14,12 +14,62 @@ export default function LonginForm() {
 	const [username, setUsename] = useState('');
 	const [password, setPassword] = useState('');
 
-	function handleLogin() {
+
+	async function test(){
+		try {
+        const response = await fetch('http://localhost:3001');
+        if (response.ok) {
+            console.log('Connexion à l\'API réussie');
+        } else {
+            console.log('Échec de la connexion à l\'API');
+			console.log(response.status, 'status');
+        }
+    } catch (error) {
+        console.error('Erreur lors de la connexion à l\'API :', error);
+    }
+	}
+	test()
+
+	async function handleLogin() {
 		if (!username || !password) {
+			// mettre un message qui alerte les user
+			return 0
 		} else {
-			
-			dispatch(setToken(username));
-			navigate('/user');
+			// creation de l'objet userData
+			const userData = {
+				email: username,
+				password: password,
+			}
+			try{
+				// post api 
+				const response = await fetch('http://localhost:3001/api/v1/user/login', {
+					method: 'POST',
+					body: JSON.stringify({
+						userData,
+					}),
+					headers: {
+						'Content-type': 'application/json',
+					},
+				})
+				// check si la reponse est bonne
+				if(response.ok){
+					const data = await response.json();
+					dispatch(setToken(data.token))
+					navigate('/user');
+				}else{
+					if(response.status == 400){
+						console.log('Error 400: Ivalid Fields');
+					}
+					else if(response.status == 500){
+						console.log('Error 500: Internal Server Error');
+					}else{
+						console.log('Error ', response.status);
+					}
+				}
+			} catch(error){
+				console.error(error);
+				return
+			}
 		}
 	}
 	return (
