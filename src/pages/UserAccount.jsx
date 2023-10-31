@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BankCard from '../components/BankCard';
@@ -9,8 +9,9 @@ import { setToken } from '../features/store';
 
 
 export default function UserAccount() {
+	const [ userName, setUserName] = useState('')
+	
 	const dispatch = useDispatch();
-	//dispatch(setToken('test'));
 	const storeToken = useSelector((state) => state.login.token); //check 
 	console.log(storeToken);
 	return (
