@@ -13,6 +13,7 @@ export default function LonginForm() {
 	// useState :
 	const [username, setUsename] = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState(null)
 
 	async function handleLogin() {
 		if (!username || !password) {
@@ -41,10 +42,13 @@ export default function LonginForm() {
 					}
 				).then((data) => data.json())
 				// check si la reponse est bonne
-					
+				if(!response.body.token){
+					console.log('non');
+				}
+
 			} catch(error){
-				console.error(error);
-				return
+				console.log('oui');
+				return error
 			}
 			dispatch(setToken(response.body.token))
 			navigate('/user')

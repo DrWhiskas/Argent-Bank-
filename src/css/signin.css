@@ -18,6 +18,9 @@
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+  position: absolute;
+  top: 10%;
+  left: 40%;
 }
 
 .sign-in-icon {
