@@ -14,22 +14,6 @@ export default function LonginForm() {
 	const [username, setUsename] = useState('');
 	const [password, setPassword] = useState('');
 
-
-	async function test(){
-		try {
-        const response = await fetch('http://localhost:3001/api/v1/user/login');
-        if (response.ok) {
-            console.log('Connexion à l\'API réussie');
-        } else {
-            console.log('Échec de la connexion à l\'API');
-			console.log(response.status, 'status');
-        }
-    } catch (error) {
-        console.error('Erreur lors de la connexion à l\'API :', error);
-    }
-	}
-	//test()
-
 	async function handleLogin() {
 		if (!username || !password) {
 			// mettre un message qui alerte les user

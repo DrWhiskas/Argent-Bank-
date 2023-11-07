@@ -10,9 +10,11 @@ import { setToken } from '../features/store';
 
 export default function UserAccount() {
 	const [ userName, setUserName] = useState('')
-	
+
 	const dispatch = useDispatch();
 	const storeToken = useSelector((state) => state.login.token); //check 
+	const check = useSelector((state) => state.profil)
+	console.log(check);
 	console.log(storeToken);
 	return (
 		<>
