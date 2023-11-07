@@ -13,9 +13,30 @@ export default function UserAccount() {
 
 	const dispatch = useDispatch();
 	const storeToken = useSelector((state) => state.login.token); //check 
-	const check = useSelector((state) => state.profil)
-	console.log(check);
 	console.log(storeToken);
+
+	// FETCH API
+
+	const apiUrl = 'http://localhost:3001/api/v1/user/profile'; // Remplacez l'URL par la bonne URL de votre API
+
+	fetch(apiUrl, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${storeToken}`,
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			// Gérez la réponse ici
+			if (data.status === 200) {
+				const userProfile = data.body;
+				console.log("Profil de l'utilisateur :", userProfile);
+			} 
+		})
+		.catch((error) => {
+			console.error("Une erreur s'est produite lors de la requête :", error);
+		});
 	return (
 		<>
 			<Header />
