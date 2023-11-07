@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import UserAccount from './pages/UserAccount';
+import Error from './pages/Error';
 
 import './css/base.css'
 // REDUX
@@ -21,6 +22,7 @@ root.render(
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/user" element={<UserAccount />} />
+					<Route path='*' element={<Error />} />
 				</Routes>
 			</BrowserRouter>
 		</Provider>
