@@ -9,18 +9,27 @@ export default function Header() {
 
 	
 
-	async function getToken(){
+	async function GetToken(){
 		const token = useSelector((state) => state.login.token);
 		console.log(token);
 		let response
 		try{
 			response = await fetch('http://localhost:3001/api/v1/user/profile', {
-				method: ''
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`
+				},
 			})
+			.then((response) => response.json())
+			.then((data) =>{
+				console.log(data.body.token);
+			})
+		} catch(error){
+			console.error(error);
 		}
-
 	}
-
+	GetToken()
 
 
 	return (
