@@ -6,39 +6,24 @@ import '../css/mainBg.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setToken } from '../features/store';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function UserAccount() {
+	const navigate = useNavigate();
+
 	const [ userName, setUserName] = useState('')
 	const [ userLastName, setUserLastName] = useState('')
+	const storesToken = useSelector((state) => state.login.token);
+	console.log(localStorage.getItem('token'), 'Perdu');
 
 	const dispatch = useDispatch();
 	const storeToken = useSelector((state) => state.login.token); //check 
 	console.log(storeToken);
 
 	// FETCH API
-
-	const apiUrl = 'http://localhost:3001/api/v1/user/profile'; // Remplacez l'URL par la bonne URL de votre API
-
-	/*fetch(apiUrl, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${storeToken}`,
-		},
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			// Gérez la réponse ici
-			if (data.status === 200) {
-				const userProfile = data.body;
-				console.log("Profil de l'utilisateur :", userProfile);
-			} 
-		})
-		.catch((error) => {
-			console.error("Une erreur s'est produite lors de la requête :", error);
-		});
-*/
+	
+	const apiUrl = 'http://localhost:3001/api/v1/user/profile';
 		useEffect(() =>{
 			async function postProfil(){
 				try{
@@ -51,9 +36,16 @@ export default function UserAccount() {
 					})
 					.then((response) => response.json())
 					.then((data) =>{
-						console.log(data.body);
-						setUserName(data.body.firstName);
-						setUserLastName(data.body.lastName);
+						if(storeToken){
+							console.log(data.body);
+							setUserName(data.body.firstName);
+							setUserLastName(data.body.lastName);
+						}else{
+							console.log('Token inconnu');
+							navigate('/login')
+							return 0
+						}
+						
 					})
 				} catch(error){
 					console.error(error);
@@ -62,29 +54,29 @@ export default function UserAccount() {
 			postProfil()
 		}, [storeToken])
 
-	return (
-		<>
-			<Header />
-			<div className="main bg-dark">
-				<div className="header">
-					<h1>
-						Welcome back
-						<br />
-						{userName} {userLastName}
-					</h1>
-					<button className="edit-button">Edit Name</button>
-				</div>
-				<BankCard />
-				<BankCard />
-				<BankCard />
-				<BankCard />
-				<BankCard />
-				<BankCard />
-				<BankCard />
-				<BankCard />
-				<BankCard />
-			</div>
-			<Footer />
-		</>
-	);
+			return (
+				<>
+					<Header />
+					<div className="main bg-dark">
+						<div className="header">
+							<h1>
+								Welcome back
+								<br />
+								{userName} {userLastName}
+							</h1>
+							<button className="edit-button">Edit Name</button>
+						</div>
+						<BankCard />
+						<BankCard />
+						<BankCard />
+						<BankCard />
+						<BankCard />
+						<BankCard />
+						<BankCard />
+						<BankCard />
+						<BankCard />
+					</div>
+					<Footer />
+				</>
+			);
 }

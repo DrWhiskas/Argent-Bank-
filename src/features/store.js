@@ -21,7 +21,7 @@ const loginSlice = createSlice({
 
     }
 })
-export const { setToken } =  loginSlice.actions
+export const { setToken, logout } =  loginSlice.actions
 
 export const store = configureStore({
 	reducer: { login: loginSlice.reducer },
