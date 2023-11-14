@@ -49,7 +49,12 @@ export default function UserAccount() {
 		async function changeName(){
 			let response
 			try{
-				response = await fetch()
+				response = await fetch(apiUrl, {
+					method: 'PUT', 
+					'Authorization': `Bearer ${storeToken}`
+				})
+			}catch(error){
+				
 			}
 		}
 

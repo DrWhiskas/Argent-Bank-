@@ -8,6 +8,7 @@ import { setToken } from '../features/store';
 import { useEffect, useState } from 'react';
 import { logout } from '../features/store';
 
+
 export default function Header() {
 	const dispatch = useDispatch()
 	const storeToken = useSelector((state) => state.login.token);
@@ -51,9 +52,14 @@ export default function Header() {
 		<nav className="main-nav">
 			<Logo />
 			{storeToken ? (
-				<Link className="main-nav-item" to="/login" onClick={disconnection}>
-					{userName} Sign out
-				</Link>
+				<>
+					<Link to="/user">
+						OUI
+					</Link>
+					<Link className="main-nav-item" to="/login" onClick={disconnection}>
+						{userName} Sign out
+					</Link>
+				</>
 			) : (
 				<Link className="main-nav-item" to="/login">
 					Sign in
