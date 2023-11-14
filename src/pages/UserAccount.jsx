@@ -11,17 +11,13 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserAccount() {
 	const navigate = useNavigate();
-
 	const [ userName, setUserName] = useState('')
 	const [ userLastName, setUserLastName] = useState('')
 	const storesToken = useSelector((state) => state.login.token);
-	//console.log(localStorage.getItem('token'), 'Perdu');
-
 	const dispatch = useDispatch();
 	const storeToken = useSelector((state) => state.login.token); //check 
 
 	// FETCH API
-	
 	const apiUrl = 'http://localhost:3001/api/v1/user/profile';
 		useEffect(() =>{
 			async function postProfil(){
@@ -42,7 +38,6 @@ export default function UserAccount() {
 							navigate('/login')
 							return 0
 						}
-						
 					})
 				} catch(error){
 					console.error(error);
@@ -50,6 +45,13 @@ export default function UserAccount() {
 			}
 			postProfil()
 		}, [storeToken])
+
+		async function changeName(){
+			let response
+			try{
+				response = await fetch()
+			}
+		}
 
 			return (
 				<>
