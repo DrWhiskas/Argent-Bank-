@@ -25,7 +25,6 @@ export default function Header() {
 				console.log(storeToken);
 			}
 			let response;
-			console.log(userName, 'name');
 			try {
 					response = await fetch(API, {
 					method: 'GET',
@@ -33,11 +32,9 @@ export default function Header() {
 						'Content-Type': 'application/json',
 						'Authorization': `Bearer ${storeToken}`,
 					},
-				})
-				console.log(response);
-				
+				})				
 			} catch (error) {
-				//console.error(error);
+				return error;
 			}
 			
 			}
