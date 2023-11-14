@@ -11,34 +11,35 @@ import { logout } from '../features/store';
 export default function Header() {
 	const dispatch = useDispatch()
 	const storeToken = useSelector((state) => state.login.token);
-	const [userData, setUserData] = useState(null);
-	console.log(storeToken, 'header');
+	const [userName, setUserName] = useState('');
 
 	const API = 'http://localhost:3001/api/v1/user/profile';
 	useEffect(() => {
 		async function getToken() {
-			if (storeToken) {
-				try {
-					const response = await fetch(API, {
-						method: 'GET',
-						headers: {
-							'Content-Type': 'application/json',
-							'Authorization': `Bearer ${storeToken}`,
-						},
-					});
-					if(response.ok){
-						const data = await response.json();
-						if (storeToken) {
-							console.log(data);
-						}
-					}else {
-						console.error(response.status, response.statusText);
-					}
-				} catch (error) {
-					console.error(error);
-				}
+			if(!storeToken){
+				console.log('Pas de token');
+				return 0;
 			}
-		}
+			else{
+				console.log(storeToken);
+			}
+			let response;
+			console.log(userName, 'name');
+			try {
+					response = await fetch(API, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${storeToken}`,
+					},
+				})
+				console.log(response);
+				
+			} catch (error) {
+				//console.error(error);
+			}
+			
+			}
 		getToken();
 	}, [storeToken]);
 
@@ -51,7 +52,7 @@ export default function Header() {
 			<Logo />
 			{storeToken ? (
 				<Link className="main-nav-item" to="/login" onClick={disconnection}>
-					Sign out
+					{userName} Sign out
 				</Link>
 			) : (
 				<Link className="main-nav-item" to="/login">

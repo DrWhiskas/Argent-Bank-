@@ -15,11 +15,10 @@ export default function UserAccount() {
 	const [ userName, setUserName] = useState('')
 	const [ userLastName, setUserLastName] = useState('')
 	const storesToken = useSelector((state) => state.login.token);
-	console.log(localStorage.getItem('token'), 'Perdu');
+	//console.log(localStorage.getItem('token'), 'Perdu');
 
 	const dispatch = useDispatch();
 	const storeToken = useSelector((state) => state.login.token); //check 
-	console.log(storeToken);
 
 	// FETCH API
 	
@@ -37,11 +36,9 @@ export default function UserAccount() {
 					.then((response) => response.json())
 					.then((data) =>{
 						if(storeToken){
-							console.log(data.body);
 							setUserName(data.body.firstName);
 							setUserLastName(data.body.lastName);
 						}else{
-							console.log('Token inconnu');
 							navigate('/login')
 							return 0
 						}

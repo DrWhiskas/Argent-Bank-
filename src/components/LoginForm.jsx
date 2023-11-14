@@ -13,45 +13,39 @@ export default function LonginForm() {
 	// useState :
 	const [username, setUsename] = useState('');
 	const [password, setPassword] = useState('');
-	const [error, setError] = useState(null)
+	const [error, setError] = useState(null);
 
 	async function handleLogin() {
 		if (!username || !password) {
 			// mettre un message qui alerte les user
-			return 0
+			return 0;
 		} else {
 			// creation de l'objet userData
 			const userData = {
-				'email': username,
-				'password': password,
-			}
-			console.log(typeof userData);
-			let response; 
-			try{
-				// post api 
-				 response = await fetch(
-					'http://localhost:3001/api/v1/user/login',
-					{
-						method: 'POST',
-						body: JSON.stringify(
-							userData
-						),
-						headers: {
-							'Content-type': 'application/json',
-						},
-					}
-				).then((data) => data.json())
+				email: username,
+				password: password,
+			};
+			//console.log(typeof userData);
+			let response;
+			try {
+				// post api
+				response = await fetch('http://localhost:3001/api/v1/user/login', {
+					method: 'POST',
+					body: JSON.stringify(userData),
+					headers: {
+						'Content-type': 'application/json',
+					},
+				}).then((data) => data.json());
 				// check si la reponse est bonne
-				if(!response.body.token){
-					console.log('non');
+				if (!response.body.token) {
+					//console.log('non');
 				}
-
-			} catch(error){
-				console.log('oui');
-				return error
+			} catch (error) {
+				//console.log('oui');
+				return error;
 			}
-			dispatch(setToken(response.body.token))
-			navigate('/user')
+			dispatch(setToken(response.body.token));
+			navigate('/user');
 		}
 	}
 	return (
