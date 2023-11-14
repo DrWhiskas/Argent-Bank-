@@ -67,14 +67,6 @@ export default function UserAccount() {
 							<button className="edit-button">Edit Name</button>
 						</div>
 						<BankCard />
-						<BankCard />
-						<BankCard />
-						<BankCard />
-						<BankCard />
-						<BankCard />
-						<BankCard />
-						<BankCard />
-						<BankCard />
 					</div>
 					<Footer />
 				</>
