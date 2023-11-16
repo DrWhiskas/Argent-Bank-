@@ -6,7 +6,7 @@ import ModalForm from '../components/ModalForm';
 import '../css/mainBg.css';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setToken } from '../features/store';
+import store, { setToken } from '../features/store';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -36,6 +36,9 @@ export default function UserAccount() {
 	const apiUrl = 'http://localhost:3001/api/v1/user/profile';
 		useEffect(() =>{
 			async function postProfil(){
+				if(!storeToken){
+					return 0
+				}
 				try{
 					const response = await fetch(apiUrl, {
 						method: 'POST', 
