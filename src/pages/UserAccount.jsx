@@ -19,7 +19,6 @@ export default function UserAccount() {
 
 	function openModal(){
 		setIsModalOpen(true)
-		console.log('oui');
 	}
 	function closeModal(){
 		setIsModalOpen(false)

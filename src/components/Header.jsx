@@ -11,13 +11,9 @@ import { logout } from '../features/store';
 export default function Header() {
 	const dispatch = useDispatch();
 	const storeToken = useSelector((state) => state.login.token);
-	const [userName, setUserName] = useState('');
+	const [ userName, setUserName ] = useState('')
 
-	if (!storeToken) {
-		console.log('token absent');
-	} else {
-		console.log('token present');
-	}
+
 	const API = 'http://localhost:3001/api/v1/user/profile';
 	useEffect(() => {
 		async function getToken() {
@@ -27,12 +23,17 @@ export default function Header() {
 			let response;
 			try {
 				response = await fetch(API, {
-					method: 'GET',
+					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 						'Authorization': `Bearer ${storeToken}`,
 					}
+				}).then((response) => response.json())
+				.then((data)=>{
+					console.log(data);
+					setUserName(data.body.firstName)
 				})
+			
 			} catch (error) {
 				console.error(error);
 			}
@@ -50,9 +51,11 @@ export default function Header() {
 			<Logo />
 			{storeToken ? (
 				<>
-					<Link to="/user">{userName}</Link>
+					<Link className="main-nav-item" to="/user">
+						{userName}
+					</Link>
 					<Link className="main-nav-item" to="/login" onClick={disconnection}>
-						{userName}oui Sign out
+						Sign out
 					</Link>
 				</>
 			) : (
