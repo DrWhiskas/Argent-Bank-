@@ -36,6 +36,7 @@ export default function UserAccount() {
 		useEffect(() =>{
 			async function postProfil(){
 				if(!storeToken){
+					navigate('/login');
 					return 0
 				}
 				try{
@@ -68,7 +69,7 @@ export default function UserAccount() {
 					<Header />
 					<div className="main bg-dark">
 						<div className="header">
-							<h1>
+							<h1 className='header-name'>
 								Welcome back
 								<br />
 								{userName} {userLastName}

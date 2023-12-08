@@ -1,6 +1,25 @@
-.main-nav {
+
+.main-nav{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px;
+}
+
+.main-nav-item-icon{
+    width: 25px;
+}
+.main-nav-active{
+    display: flex;
+    align-items: center;
+}
+.main-nav-item{
+    font-weight: bold;
+    color: #2c3e50;
+    display: flex;
+    place-items: center;
+}
+.main-nav-item:hover{
+    text-decoration: underline;
 }

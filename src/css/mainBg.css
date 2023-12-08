@@ -5,3 +5,10 @@
 .bg-dark {
   background-color: #12002b;
 }
+.header{
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.header-name{
+  padding: 10px;
+}

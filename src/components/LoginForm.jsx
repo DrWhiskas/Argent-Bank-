@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/signin.css';
-
+import Icon from '../img/profilIcon.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from '../features/store';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,6 @@ export default function LonginForm() {
 				email: username,
 				password: password,
 			};
-			//console.log(typeof userData);
 			let response;
 			try {
 				// post api
@@ -50,6 +49,7 @@ export default function LonginForm() {
 	}
 	return (
 		<section className="sign-in-content">
+			<img className="sign-in-content-icon" src={Icon} alt="profil icon" />
 			<h1>Sign In</h1>
 			<form>
 				<div className="input-wrapper">
