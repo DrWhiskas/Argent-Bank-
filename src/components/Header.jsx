@@ -32,7 +32,6 @@ export default function Header() {
 					}
 				}).then((response) => response.json())
 				.then((data)=>{
-					console.log(data);
 					setUserName(data.body.firstName)
 				})
 			

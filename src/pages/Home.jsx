@@ -6,7 +6,6 @@ import Chat from '../img/icon-chat.png';
 import Money from '../img/icon-money.png';
 import Security from '../img/icon-security.png';
 
-import '../css/home.css';
 import '../css/hero.css';
 import '../css/features.css';
 
