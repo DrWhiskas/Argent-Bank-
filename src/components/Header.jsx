@@ -14,7 +14,7 @@ export default function Header() {
 	const dispatch = useDispatch();
 	const storeToken = useSelector((state) => state.login.token);
 	const [ userName, setUserName ] = useState('')
-
+	
 
 	const API = 'http://localhost:3001/api/v1/user/profile';
 	useEffect(() => {

@@ -3,7 +3,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 
 const initialState = {
-	user: null,
 	token: '',
 };
 
@@ -17,7 +16,6 @@ const loginSlice = createSlice({
         logout: (state) =>{
             state.token = ''
         },
-
     }
 })
 export const { setToken, logout } =  loginSlice.actions
