@@ -6,12 +6,14 @@
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #00bc77;
+  border: none;
   background-color: #00bc77;
   color: #fff;
+  transition: all ease-in-out .2s;
 }
-.sign-in-button{
+.sign-in-button:hover{
   cursor: pointer;
+  transform: scale(1.05);
 }
 
 .sign-in-content {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../css/signin.css';
 import Icon from '../img/profilIcon.png'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setToken } from '../features/store';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +16,6 @@ export default function LonginForm() {
 
 	async function handleLogin() {
 		if (!username || !password) {
-			// mettre un message qui alerte les user
 			return 0;
 		} else {
 			// creation de l'objet userData
@@ -35,12 +33,7 @@ export default function LonginForm() {
 						'Content-type': 'application/json',
 					},
 				}).then((data) => data.json());
-				// check si la reponse est bonne
-				if (!response.body.token) {
-					//console.log('non');
-				}
 			} catch (error) {
-				//console.log('oui');
 				return error;
 			}
 			dispatch(setToken(response.body.token));

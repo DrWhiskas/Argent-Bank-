@@ -33,4 +33,9 @@
     font-weight: bolder;
     font-size: 15px;
     margin-top: 10px;
+    transition: all ease-in-out .2s;
+}
+.close:hover{
+    cursor: pointer;
+    transform: scale(1.05);
 }
