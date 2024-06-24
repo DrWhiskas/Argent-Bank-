@@ -10,7 +10,6 @@
 
 - react
 - redux
-- react
 - @reduxjs/toolkit
 - react-router-dom
 
